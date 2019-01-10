@@ -34,7 +34,6 @@ export class Signup extends React.Component {
       db.settings({ timestampsInSnapshots: true });
 
       const docUrl = await S3UploadService.uploadDocument(this.state.cv);
-      console.log(docUrl);
 
       await db.collection("candidates-react").add({
         firstName: this.state.firstName,
@@ -49,8 +48,6 @@ export class Signup extends React.Component {
         cv: null,
         snackOpen: true
       });
-
-
     }
   }
 
@@ -81,7 +78,6 @@ export class Signup extends React.Component {
   }
 
   getFile = event => {
-    console.log(event.target.files);
     if (event.target.files && event.target.files.length === 1) {
       this.setState({ cv: event.target.files[0] }, () => this.formValid());
     }
